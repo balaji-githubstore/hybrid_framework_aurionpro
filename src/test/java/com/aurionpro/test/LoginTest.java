@@ -7,6 +7,7 @@ import com.aurionpro.base.AutomationWrapper;
 import com.aurionpro.pages.LoginPage;
 import com.aurionpro.pages.MainPage;
 import com.aurionpro.utilities.DataUtils;
+import com.aventstack.extentreports.Status;
 	
 public class LoginTest extends AutomationWrapper {
 
@@ -15,12 +16,15 @@ public class LoginTest extends AutomationWrapper {
 		
 		LoginPage login=new LoginPage(driver);
 		login.enterUsername(username);
+		test.log(Status.INFO, "Entered Username: "+username);
 		login.enterPassword(password);
+		test.log(Status.INFO, "Entered Password: "+password);
 		login.clickOnLogin();
-
+		test.log(Status.INFO, "Clicked on Login ");
 		MainPage main=new MainPage(driver);
 		String actualTitle = main.getMainPageTitle();
 		
+		test.log(Status.INFO, "Actual Title "+actualTitle);
 		Assert.assertEquals(actualTitle, expectedTitle);
 	}
 
